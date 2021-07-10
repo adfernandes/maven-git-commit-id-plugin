@@ -14,3 +14,30 @@
  * You should have received a copy of the GNU Lesser General Public License
  * along with git-commit-id-maven-plugin.  If not, see <http://www.gnu.org/licenses/>.
  */
+
+package pl.project13.maven.git;
+
+import org.assertj.core.api.Condition;
+
+import javax.annotation.Nonnull;
+import java.util.Map;
+
+class DoesNotContainKeyCondition extends Condition<Map<?, ?>> {
+
+  private String key;
+
+  public DoesNotContainKeyCondition(String key) {
+    this.key = key;
+  }
+
+  @Override
+  public boolean matches(@Nonnull Map<?, ?> map) {
+    boolean containsKey = map.containsKey(key);
+    if (containsKey) {
+      System.out.println(String.format("Map contained [%s] key! Map is: %s", key, map));
+      throw new RuntimeException(String.format("Map contained [%s] key! Map is: %s", key, map));
+    }
+    return true;
+  }
+
+}

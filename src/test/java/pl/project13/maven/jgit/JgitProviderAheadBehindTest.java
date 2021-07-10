@@ -14,3 +14,23 @@
  * You should have received a copy of the GNU Lesser General Public License
  * along with git-commit-id-maven-plugin.  If not, see <http://www.gnu.org/licenses/>.
  */
+
+package pl.project13.maven.jgit;
+
+import pl.project13.core.JGitProvider;
+import pl.project13.maven.git.AheadBehindTest;
+
+import java.nio.file.Paths;
+
+public class JgitProviderAheadBehindTest extends AheadBehindTest<JGitProvider> {
+
+  @Override
+  public void extraSetup() {
+    gitProvider.setRepository(localRepositoryGit.getRepository());
+  }
+
+  @Override
+  protected JGitProvider gitProvider() {
+    return JGitProvider.on(Paths.get(localRepository.getRoot().getAbsolutePath(), ".git").toFile(), null);
+  }
+}

@@ -1,40 +1,53 @@
 maven git commit id plugin
 ==================================
 
-[![Build Status](https://secure.travis-ci.org/git-commit-id/git-commit-id-maven-plugin.svg?branch=master)](https://travis-ci.org/github/git-commit-id/git-commit-id-maven-plugin)
+[![Build Status](https://github.com/git-commit-id/git-commit-id-maven-plugin/workflows/Java%20CI/badge.svg?branch=master)](https://github.com/git-commit-id/git-commit-id-maven-plugin/actions)
 [![Coverage Status](https://coveralls.io/repos/github/git-commit-id/git-commit-id-maven-plugin/badge.svg?branch=master)](https://coveralls.io/github/git-commit-id/git-commit-id-maven-plugin?branch=master)
-[![Maven Central](https://maven-badges.herokuapp.com/maven-central/pl.project13.maven/git-commit-id-plugin/badge.svg)](https://search.maven.org/artifact/pl.project13.maven/git-commit-id-plugin)
+[![Maven Central](https://maven-badges.herokuapp.com/maven-central/io.github.git-commit-id/git-commit-id-maven-plugin/badge.svg)](https://search.maven.org/artifact/io.github.git-commit-id/git-commit-id-maven-plugin)
 
 
-git-commit-id-plugin is a plugin quite similar to [Build Number Maven Plugin](https://www.mojohaus.org/buildnumber-maven-plugin/index.html) for example but as the Build Number plugin at the time when I started this plugin only supported CVS and SVN, something had to be done.
+git-commit-id-maven-plugin is a plugin quite similar to [Build Number Maven Plugin](https://www.mojohaus.org/buildnumber-maven-plugin/index.html) for example but as the Build Number plugin at the time when I started this plugin only supported CVS and SVN, something had to be done.
 I had to quickly develop a Git version of such a plugin. For those who don't know the plugin, it basically helps you with the following tasks and answers related questions
 * Which version had the bug? Is that deployed already?
 * Make your distributed deployment aware of versions
 * Validate if properties are set as expected
 
-If you are more interested in the different use-cases, feel free to [read about them in more detail](maven/docs/use-cases.md).
+If you are more interested in the different use-cases, feel free to [read about them in more detail](docs/use-cases.md).
 
 Quicklinks (all relevant documentation)
 ==================
-* [Use case documentation](maven/docs/use-cases.md)
-* [Using the plugin documentation (all details for configuration, properties, ...)](maven/docs/using-the-plugin.md)
-* [A more technical documentation  on how to use the leverage the generated properties from this plugin](maven/docs/using-the-plugin-in-more-depth.md)
-* [A general documentation for git describe (usefull feature in this plugin, if you are not familiar with the command)](maven/docs/git-describe.md)
-* [Frequently Asked Question (FAQ)](maven/docs/faq.md)
+* [Use case documentation](docs/use-cases.md)
+* [Using the plugin documentation (all details for configuration, properties, ...)](docs/using-the-plugin.md)
+* [A more technical documentation  on how to use the leverage the generated properties from this plugin](docs/using-the-plugin-in-more-depth.md)
+* [A general documentation for git describe (usefull feature in this plugin, if you are not familiar with the command)](docs/git-describe.md)
+* [Frequently Asked Question (FAQ)](docs/faq.md)
 * [Contributing](CONTRIBUTING.md)
 
 Getting the plugin
 ==================
-The plugin **is available from Maven Central** ([see here](https://search.maven.org/artifact/pl.project13.maven/git-commit-id-plugin)), so you don't have to configure any additional repositories to use this plugin.
+The plugin **is available from Maven Central** ([see here](https://search.maven.org/artifact/io.github.git-commit-id/git-commit-id-maven-plugin)), so you don't have to configure any additional repositories to use this plugin.
 
-A detailed description of using the plugin is available in the [Using the plugin](maven/docs/using-the-plugin.md) document. All you need to do in the basic setup is to include that plugin definition in your `pom.xml`.
-For more advanced users we also prepared a [guide to provide a brief overview of the more advanced configurations](maven/docs/using-the-plugin.md)... read on!
+A detailed description of using the plugin is available in the [Using the plugin](docs/using-the-plugin.md) document. All you need to do in the basic setup is to include that plugin definition in your `pom.xml`.
+For more advanced users we also prepared a [guide to provide a brief overview of the more advanced configurations](docs/using-the-plugin.md)... read on!
+
+Relocation of the Project
+------------------------
+Newer version (5.x.x or more recent) are available via
+```xml
+<groupId>io.github.git-commit-id</groupId>
+<artifactId>git-commit-id-maven-plugin</artifactId>
+```
+older version (4.x.x or older) are available via:
+```xml
+<groupId>pl.project13.maven</groupId>
+<artifactId>git-commit-id-plugin</artifactId>
+``` 
 
 Versions
 --------
-The current version is **4.0.3** ([changelist](https://github.com/git-commit-id/git-commit-id-maven-plugin/issues?q=milestone%3A4.0.3)).
+The current version is **5.0.0** ([changelist](https://github.com/git-commit-id/git-commit-id-maven-plugin/issues?q=milestone%3A5.0.0)).
 
-You can check the available versions by visiting [search.maven.org](https://search.maven.org/artifact/pl.project13.maven/git-commit-id-plugin), though using the newest is obviously the best choice.
+You can check the available versions by visiting [search.maven.org](https://search.maven.org/artifact/io.github.git-commit-id/git-commit-id-maven-plugin), though using the newest is obviously the best choice.
 
 Plugin compatibility with Java
 -------------------------------
@@ -44,6 +57,7 @@ Plugin compatibility with Java
 | 2.2.X           | Java 1.7              |
 | 3.0.0           | Java 1.8              |
 | 4.0.0           | Java 1.8              |
+| 5.0.0           | Java 11               |
 
 
 Plugin compatibility with Maven
@@ -52,18 +66,28 @@ Even though this plugin tries to be compatible with every Maven version there ar
 
 | Maven Version               | Plugin Version  | Notes                                                                                                           |
 | --------------------------- | ---------------:|:---------------------------------------------------------------------------------------------------------------:|
-| Maven 2.0.11                | up to 2.2.6     | Maven 2 is EOL, git-commit-id-plugin:1.0 doesn't work -- requires maven version 2.2.1                           |
-| Maven 2.2.1                 | up to 2.2.6     | Maven 2 is EOL                                                                                                  |
-| Maven 3.0.X                 | any             | git-commit-id-plugin:2.1.14, 2.1.15, 2.2.0, 2.2.1, 2.2.3  doesn't work  -- requires maven version 3.1.1         |
-| Maven 3.0.X                 | any             | For git-commit-id-plugin 2.2.4 or higher: works, but failed to load class "org.slf4j.impl.StaticLoggerBinder"   |
+| Maven 3.0.X (EOL)           | up to 4.0.5     | Maven 3.0.X is EOL
 | Maven 3.1.0                 | any             | git-commit-id-plugin:2.1.14, 2.1.15, 2.2.0, 2.2.1, 2.2.3 doesn't work -- requires maven version 3.1.1           |
 | Maven 3.3.1                 | any             | git-commit-id-plugin:2.1.14 doesn't work                                                                        |
 | Maven 3.3.3                 | any             | git-commit-id-plugin:2.1.14 doesn't work                                                                        |
-| Maven 3.X.X                 | any             | Any other non listed version here should work with any plugin version                                           |
+| Maven 3.X.X (3.0.X is EOL)  | any             | Any other non listed version here should work with any plugin version                                           |
 
 
 Note:
 As an example -- this table should be read as: For `Maven 3.1.0` `any` Plugin Version should work, besides the ones listed in the `Notes` have the limitations listed.
+
+Plugin compatibility with EOL Maven version
+-----------------------------
+End of life (EOL) Maven versions are no longer supported by Maven, nor this plugin.
+The following information is made available for reference.
+
+| Maven Version               | Plugin Version  | Notes                                                                                                           |
+| --------------------------- | ---------------:|:---------------------------------------------------------------------------------------------------------------:|
+| Maven 2.0.11                | up to 2.2.6     | Maven 2 is EOL, git-commit-id-plugin:1.0 doesn't work -- requires maven version 2.2.1                           |
+| Maven 2.2.1                 | up to 2.2.6     | Maven 2 is EOL                                                                                                  |
+| Maven 3.0.X                 | up to 4.0.5     | git-commit-id-plugin:2.1.14, 2.1.15, 2.2.0, 2.2.1, 2.2.3  doesn't work  -- requires maven version 3.1.1         |
+| Maven 3.0.X                 | up to 4.0.5     | For git-commit-id-plugin 2.2.4 or higher: works, but failed to load class "org.slf4j.impl.StaticLoggerBinder"   |
+
 
 Getting SNAPSHOT versions of the plugin
 ---------------------------------------
@@ -75,10 +99,13 @@ But I highly recommend using only stable versions, from Maven Central... :-)
     <pluginRepository>
         <id>sonatype-snapshots</id>
         <name>Sonatype Snapshots</name>
-        <url>https://oss.sonatype.org/content/repositories/snapshots/</url>
+        <url>https://s01.oss.sonatype.org/content/repositories/snapshots/</url>
     </pluginRepository>
 </pluginRepositories>
 ```
+
+Older Snapshots (prior version 5.X) are available via `<url>https://oss.sonatype.org/content/repositories/snapshots/</url>`.
+
 
 If you just would like to see what the plugin can do, you can clone the repository and run
 ```
